@@ -1,0 +1,15 @@
+@model Note
+
+<h1>Add Note</h1>
+
+<form asp-action="Add" method="post">
+
+    <label for="title">Title:</label>
+    <input id="title" name="Title" type="text" required>
+
+    <label for="content">Content:</label>
+    <textarea id="content" name="Content" required></textarea>
+
+    <input type="submit" value="Add Note">
+
+</form>

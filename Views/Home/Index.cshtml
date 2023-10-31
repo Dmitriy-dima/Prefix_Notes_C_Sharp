@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Note>
+<div class="container">
+
+    <h1>Notes</h1>
+
+    <div class="actions">
+        <a asp-action="Add" class="btn btn-primary">Add Note</a>
+    </div>
+
+    <form class="search" asp-action="Index" method="get">
+
+        <input type="text" name="query" class="search-input" placeholder="Search notes">
+
+        <button type="submit" class="search-button">
+            Search
+        </button>
+
+        <button type="button" class="btn" onclick="location.href='@Url.Action("Index")'">
+            Clear
+        </button>
+
+    </form>
+
+    <div class="notes">
+
+        @if (Model.Any())
+        {
+
+            foreach (var note in Model)
+            {
+
+
+                <div class="note">
+
+                    <div class="note-header">
+
+                        <h2 class="note-title">@note.Title</h2>
+
+                        <div class="note-actions">
+                            <button class="note-btn note-btn-primary edit-action"
+                                onclick="location.href='@Url.Action("Edit", "Home", new { id = note.Id })'">Edit</button>
+                            <form asp-action="Delete" asp-route-id="@note.Id" class="delete-form">
+
+                                <button class="note-btn note-btn-danger">
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <p class="note-content">@note.Content</p>
+
+                </div>
+
+            }
+
+        }
+        else
+        {
+
+            <p>No notes available.</p>
+
+        }
+
+    </div>
+
+</div>
